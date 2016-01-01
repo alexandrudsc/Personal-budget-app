@@ -15,7 +15,8 @@ namespace Finance.views
     /// Class to  manage a financial category, only from visual point of view.
     /// Derives from group box and contains a tile covering the whole group.
     /// The tile has it's own name, appearing on the bottom.
-    /// Also, there is a label at the middle left containing the description
+    /// A label at the middle left containing the description.
+    /// Used as "View" in MCV pattern
     /// </summary>
     class FinanceCategory: GroupBox
     {

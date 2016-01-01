@@ -8,12 +8,10 @@ using MetroFramework.Controls;
 using MetroFramework;
 using System.Data.SqlClient;
 using System.Data;
-using System.Windows.Forms;
 
-using Finance.views;
 using Finance.models;
 using Finance.controllers;
-
+using System.Windows.Forms;
 
 namespace Finance
 {
@@ -41,11 +39,8 @@ namespace Finance
 
         // the selected major category
         private int majorCategory = 0;
-        private FinanceChart chart;
-
+        private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
-
-        // check boxes for displaying graph
         private MetroCheckBox chkIncomes;
         private MetroCheckBox chkExpenses;
         private MetroCheckBox chkSavings;
@@ -62,9 +57,6 @@ namespace Finance
         {
             InitializeComponent();
 
-            chart = new FinanceChart();
-            metroTabPage2.Controls.Add(chart);
-
             // create adapter for the panel (the grid list = a panel with flow layout)
             gridListAdapter = new GridListAdapter(this.panelCategories);
         }
@@ -73,6 +65,10 @@ namespace Finance
 
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Title title1 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.Title title2 = new System.Windows.Forms.DataVisualization.Charting.Title();
             this.metroTabControl = new MetroFramework.Controls.MetroTabControl();
             this.metroTabPage1 = new MetroFramework.Controls.MetroTabPage();
             this.panelCategories = new System.Windows.Forms.FlowLayoutPanel();
@@ -85,11 +81,13 @@ namespace Finance
             this.chkIncomes = new MetroFramework.Controls.MetroCheckBox();
             this.chkExpenses = new MetroFramework.Controls.MetroCheckBox();
             this.chkSavings = new MetroFramework.Controls.MetroCheckBox();
+            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.lblAppName = new MetroFramework.Controls.MetroLabel();
             this.metroTabControl.SuspendLayout();
             this.metroTabPage1.SuspendLayout();
             this.metroTabPage2.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.SuspendLayout();
             // 
             // metroTabControl
@@ -99,7 +97,7 @@ namespace Finance
             this.metroTabControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.metroTabControl.Location = new System.Drawing.Point(20, 60);
             this.metroTabControl.Name = "metroTabControl";
-            this.metroTabControl.SelectedIndex = 0;
+            this.metroTabControl.SelectedIndex = 1;
             this.metroTabControl.Size = new System.Drawing.Size(753, 401);
             this.metroTabControl.TabIndex = 1;
             this.metroTabControl.Theme = MetroFramework.MetroThemeStyle.Dark;
@@ -139,7 +137,7 @@ namespace Finance
             this.panelCategories.BackColor = System.Drawing.SystemColors.WindowFrame;
             this.panelCategories.Location = new System.Drawing.Point(175, 28);
             this.panelCategories.Name = "panelCategories";
-            this.panelCategories.Size = new System.Drawing.Size(570, 264);
+            this.panelCategories.Size = new System.Drawing.Size(570, 238);
             this.panelCategories.TabIndex = 29;
             // 
             // metroButtonAdd
@@ -147,9 +145,9 @@ namespace Finance
             this.metroButtonAdd.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.metroButtonAdd.FontSize = MetroFramework.MetroButtonSize.Tall;
-            this.metroButtonAdd.Location = new System.Drawing.Point(175, 308);
+            this.metroButtonAdd.Location = new System.Drawing.Point(175, 272);
             this.metroButtonAdd.Name = "metroButtonAdd";
-            this.metroButtonAdd.Size = new System.Drawing.Size(567, 32);
+            this.metroButtonAdd.Size = new System.Drawing.Size(570, 32);
             this.metroButtonAdd.TabIndex = 0;
             this.metroButtonAdd.TabStop = false;
             this.metroButtonAdd.Text = "Add";
@@ -196,6 +194,7 @@ namespace Finance
             // metroTabPage2
             // 
             this.metroTabPage2.Controls.Add(this.flowLayoutPanel1);
+            this.metroTabPage2.Controls.Add(this.chart1);
             this.metroTabPage2.HorizontalScrollbarBarColor = true;
             this.metroTabPage2.HorizontalScrollbarHighlightOnWheel = false;
             this.metroTabPage2.HorizontalScrollbarSize = 10;
@@ -267,6 +266,24 @@ namespace Finance
             this.chkSavings.UseSelectable = true;
             this.chkSavings.CheckedChanged += new System.EventHandler(this.checkbox_CheckedChanged);
             // 
+            // chart1
+            // 
+            chartArea1.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chart1.Legends.Add(legend1);
+            this.chart1.Location = new System.Drawing.Point(25, 25);
+            this.chart1.Name = "chart1";
+            this.chart1.Size = new System.Drawing.Size(596, 309);
+            this.chart1.TabIndex = 2;
+            this.chart1.Text = "chart1";
+            title1.Font = new System.Drawing.Font("Segoe UI", 12F);
+            title1.ForeColor = System.Drawing.Color.White;
+            title1.Name = "Income";
+            title2.Name = "Expenses";
+            this.chart1.Titles.Add(title1);
+            this.chart1.Titles.Add(title2);
+            // 
             // lblAppName
             // 
             this.lblAppName.AutoSize = true;
@@ -293,6 +310,7 @@ namespace Finance
             this.metroTabPage2.ResumeLayout(false);
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -358,11 +376,56 @@ namespace Finance
                 case 1:
                     // statistics tab
                     ChartModel chartModel = new ChartModel();
-                    chartController = new ChartController(this.chart, chartModel);
+                    chart1.MouseWheel += chart_MouseWheel;
+                    chart1.MouseLeave += chart_MouseEnter;
+                    chart1.MouseEnter += chart_MouseLeave;
+                    chartController = new ChartController(this.chart1, chartModel);
                     chartController.updateView();
                     break;
  
             }
+        }
+
+        private void chart_MouseWheel(object sender, MouseEventArgs e)
+        {
+            MessageBox.Show(e.Delta + "");
+            try
+            {
+                if (e.Delta < 0)
+                {
+                    chart1.ChartAreas[0].AxisX.ScaleView.ZoomReset();
+                    chart1.ChartAreas[0].AxisY.ScaleView.ZoomReset();
+                }
+
+                if (e.Delta > 0)
+                {
+                    double xMin = chart1.ChartAreas[0].AxisX.ScaleView.ViewMinimum;
+                    double xMax = chart1.ChartAreas[0].AxisX.ScaleView.ViewMaximum;
+                    double yMin = chart1.ChartAreas[0].AxisY.ScaleView.ViewMinimum;
+                    double yMax = chart1.ChartAreas[0].AxisY.ScaleView.ViewMaximum;
+
+                    double posXStart = chart1.ChartAreas[0].AxisX.PixelPositionToValue(e.Location.X) - (xMax - xMin) / 4;
+                    double posXFinish = chart1.ChartAreas[0].AxisX.PixelPositionToValue(e.Location.X) + (xMax - xMin) / 4;
+                    double posYStart = chart1.ChartAreas[0].AxisY.PixelPositionToValue(e.Location.Y) - (yMax - yMin) / 4;
+                    double posYFinish = chart1.ChartAreas[0].AxisY.PixelPositionToValue(e.Location.Y) + (yMax - yMin) / 4;
+
+                    chart1.ChartAreas[0].AxisX.ScaleView.Zoom(posXStart, posXFinish);
+                    chart1.ChartAreas[0].AxisY.ScaleView.Zoom(posYStart, posYFinish);
+                }
+            }
+            catch (Exception ex) { MessageBox.Show(ex.ToString()); }
+        }
+
+        void chart_MouseLeave(object sender, EventArgs e)
+        {
+            if (chart1.Focused)
+                chart1.Parent.Focus();
+        }
+
+        void chart_MouseEnter(object sender, EventArgs e)
+        {
+            if (!chart1.Focused)
+                chart1.Focus();
         }
 
         private void checkbox_CheckedChanged(object sender, EventArgs e)

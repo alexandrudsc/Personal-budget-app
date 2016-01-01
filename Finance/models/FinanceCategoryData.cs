@@ -8,6 +8,11 @@ namespace Finance.models
 {
     class FinanceCategoryData
     {
+        // Global codes
+        public const int INCOMES = 0;
+        public const int EXPENSES = 1;
+        public const int SAVINGS = 2;
+
         // the data backing this category: must be serializable in order to write/read from files
         [Serializable]
         public struct Data
@@ -50,6 +55,8 @@ namespace Finance.models
                              d1.value == d2.value &&
                              d1.repeatWeek == d2.repeatWeek);
             }
+
+
 
         }
     }
