@@ -3,8 +3,7 @@ E:\Work\Sandi\College projects\PIU anul III\Finance\Finance\bin\Debug\Finance.pd
 E:\Work\Sandi\College projects\PIU anul III\Finance\Finance\obj\Debug\Finance.AddCategoryForm.resources
 E:\Work\Sandi\College projects\PIU anul III\Finance\Finance\obj\Debug\Finance.MainForm.resources
 E:\Work\Sandi\College projects\PIU anul III\Finance\Finance\obj\Debug\Finance.Properties.Resources.resources
+E:\Work\Sandi\College projects\PIU anul III\Finance\Finance\obj\Debug\Finance.views.FinanceCategory.resources
 E:\Work\Sandi\College projects\PIU anul III\Finance\Finance\obj\Debug\Finance.csproj.GenerateResource.Cache
 E:\Work\Sandi\College projects\PIU anul III\Finance\Finance\obj\Debug\Finance.exe
 E:\Work\Sandi\College projects\PIU anul III\Finance\Finance\obj\Debug\Finance.pdb
-E:\Work\Sandi\College projects\PIU anul III\Finance\Finance\obj\Debug\Finance.views.FinanceCategory.resources
-E:\Work\Sandi\College projects\PIU anul III\Finance\Finance\obj\Debug\Finance.csprojResolveAssemblyReference.cache

@@ -42,6 +42,11 @@ namespace Finance.models
 
         public ChartModel()
         {
+            refreshData();
+        }
+
+        public void refreshData()
+        {
             incomes = Utils.retreiveAll(FinanceCategoryData.INCOMES);
             expenses = Utils.retreiveAll(FinanceCategoryData.EXPENSES);
             savings = Utils.retreiveAll(FinanceCategoryData.SAVINGS);

@@ -53,14 +53,10 @@ namespace Finance
         // controller for the list of categories
         GridListAdapter gridListAdapter;
         private MetroCheckBox chkFull;
-        private MetroComboBox cmbChartType;
 
-        // controller and model for chart (MVC)
-        ChartController chartController;
-        private MetroLabel metroLabel1;
-        private MetroDateTime dtRight;
-        private MetroDateTime dtLeft;
-        ChartModel chartModel;
+        // controller for chart
+        ChartController chartController; 
+
         #endregion 
 
         public MainForm()
@@ -71,11 +67,7 @@ namespace Finance
             chart = new FinanceChart();
             metroTabPage2.Controls.Add(chart);
 
-            // define hmodel and controller for chart (MVC)
-            chartModel = new ChartModel();
-            chartController = new ChartController(this.chart, chartModel);
-
-            // create controller for the panel (the grid list = a panel with flow layout) (MVC)
+            // create adapter for the panel (the grid list = a panel with flow layout)
             gridListAdapter = new GridListAdapter(this.panelCategories);
         }
 
@@ -91,10 +83,6 @@ namespace Finance
             this.tileExpenses = new MetroFramework.Controls.MetroTile();
             this.tileIncomes = new MetroFramework.Controls.MetroTile();
             this.metroTabPage2 = new MetroFramework.Controls.MetroTabPage();
-            this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
-            this.dtRight = new MetroFramework.Controls.MetroDateTime();
-            this.dtLeft = new MetroFramework.Controls.MetroDateTime();
-            this.cmbChartType = new MetroFramework.Controls.MetroComboBox();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.chkFull = new MetroFramework.Controls.MetroCheckBox();
             this.chkIncomes = new MetroFramework.Controls.MetroCheckBox();
@@ -114,7 +102,7 @@ namespace Finance
             this.metroTabControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.metroTabControl.Location = new System.Drawing.Point(20, 60);
             this.metroTabControl.Name = "metroTabControl";
-            this.metroTabControl.SelectedIndex = 1;
+            this.metroTabControl.SelectedIndex = 0;
             this.metroTabControl.Size = new System.Drawing.Size(753, 401);
             this.metroTabControl.TabIndex = 1;
             this.metroTabControl.Theme = MetroFramework.MetroThemeStyle.Dark;
@@ -133,10 +121,10 @@ namespace Finance
             this.metroTabPage1.HorizontalScrollbarBarColor = true;
             this.metroTabPage1.HorizontalScrollbarHighlightOnWheel = false;
             this.metroTabPage1.HorizontalScrollbarSize = 10;
-            this.metroTabPage1.Location = new System.Drawing.Point(4, 35);
+            this.metroTabPage1.Location = new System.Drawing.Point(4, 38);
             this.metroTabPage1.Name = "metroTabPage1";
             this.metroTabPage1.Padding = new System.Windows.Forms.Padding(25);
-            this.metroTabPage1.Size = new System.Drawing.Size(745, 362);
+            this.metroTabPage1.Size = new System.Drawing.Size(745, 359);
             this.metroTabPage1.TabIndex = 0;
             this.metroTabPage1.Text = "Categories && details";
             this.metroTabPage1.Theme = MetroFramework.MetroThemeStyle.Dark;
@@ -154,7 +142,7 @@ namespace Finance
             this.panelCategories.BackColor = System.Drawing.SystemColors.WindowFrame;
             this.panelCategories.Location = new System.Drawing.Point(175, 28);
             this.panelCategories.Name = "panelCategories";
-            this.panelCategories.Size = new System.Drawing.Size(570, 252);
+            this.panelCategories.Size = new System.Drawing.Size(570, 255);
             this.panelCategories.TabIndex = 29;
             // 
             // metroButtonAdd
@@ -162,7 +150,7 @@ namespace Finance
             this.metroButtonAdd.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.metroButtonAdd.FontSize = MetroFramework.MetroButtonSize.Tall;
-            this.metroButtonAdd.Location = new System.Drawing.Point(175, 296);
+            this.metroButtonAdd.Location = new System.Drawing.Point(175, 299);
             this.metroButtonAdd.Name = "metroButtonAdd";
             this.metroButtonAdd.Size = new System.Drawing.Size(567, 32);
             this.metroButtonAdd.TabIndex = 0;
@@ -210,10 +198,6 @@ namespace Finance
             // 
             // metroTabPage2
             // 
-            this.metroTabPage2.Controls.Add(this.metroLabel1);
-            this.metroTabPage2.Controls.Add(this.dtRight);
-            this.metroTabPage2.Controls.Add(this.dtLeft);
-            this.metroTabPage2.Controls.Add(this.cmbChartType);
             this.metroTabPage2.Controls.Add(this.flowLayoutPanel1);
             this.metroTabPage2.HorizontalScrollbarBarColor = true;
             this.metroTabPage2.HorizontalScrollbarHighlightOnWheel = false;
@@ -230,57 +214,6 @@ namespace Finance
             this.metroTabPage2.VerticalScrollbarSize = 10;
             this.metroTabPage2.Visible = false;
             // 
-            // metroLabel1
-            // 
-            this.metroLabel1.AutoSize = true;
-            this.metroLabel1.FontSize = MetroFramework.MetroLabelSize.Tall;
-            this.metroLabel1.FontWeight = MetroFramework.MetroLabelWeight.Bold;
-            this.metroLabel1.Location = new System.Drawing.Point(244, 3);
-            this.metroLabel1.Name = "metroLabel1";
-            this.metroLabel1.Size = new System.Drawing.Size(19, 25);
-            this.metroLabel1.TabIndex = 10;
-            this.metroLabel1.Text = "-";
-            this.metroLabel1.Theme = MetroFramework.MetroThemeStyle.Dark;
-            // 
-            // dtRight
-            // 
-            this.dtRight.Location = new System.Drawing.Point(280, 3);
-            this.dtRight.MinimumSize = new System.Drawing.Size(0, 29);
-            this.dtRight.Name = "dtRight";
-            this.dtRight.Size = new System.Drawing.Size(200, 29);
-            this.dtRight.TabIndex = 9;
-            this.dtRight.Theme = MetroFramework.MetroThemeStyle.Dark;
-            this.dtRight.ValueChanged += new System.EventHandler(this.dtRight_ValueChanged);
-            // 
-            // dtLeft
-            // 
-            this.dtLeft.Location = new System.Drawing.Point(25, 3);
-            this.dtLeft.MinimumSize = new System.Drawing.Size(0, 29);
-            this.dtLeft.Name = "dtLeft";
-            this.dtLeft.Size = new System.Drawing.Size(200, 29);
-            this.dtLeft.TabIndex = 8;
-            this.dtLeft.Theme = MetroFramework.MetroThemeStyle.Dark;
-            this.dtLeft.ValueChanged += new System.EventHandler(this.dtLeft_ValueChanged);
-            // 
-            // cmbChartType
-            // 
-            this.cmbChartType.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.cmbChartType.FormattingEnabled = true;
-            this.cmbChartType.ItemHeight = 23;
-            this.cmbChartType.Items.AddRange(new object[] {
-            "Default",
-            "Doghnut",
-            "Lines",
-            "Pie"});
-            this.cmbChartType.Location = new System.Drawing.Point(639, 183);
-            this.cmbChartType.Name = "cmbChartType";
-            this.cmbChartType.Size = new System.Drawing.Size(100, 29);
-            this.cmbChartType.Sorted = true;
-            this.cmbChartType.TabIndex = 7;
-            this.cmbChartType.Theme = MetroFramework.MetroThemeStyle.Dark;
-            this.cmbChartType.UseSelectable = true;
-            this.cmbChartType.SelectedIndexChanged += new System.EventHandler(this.cmbChartType_SelectedIndexChanged);
-            // 
             // flowLayoutPanel1
             // 
             this.flowLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -292,7 +225,7 @@ namespace Finance
             this.flowLayoutPanel1.Controls.Add(this.chkSavings);
             this.flowLayoutPanel1.Location = new System.Drawing.Point(636, 25);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(106, 121);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(106, 306);
             this.flowLayoutPanel1.TabIndex = 6;
             // 
             // chkFull
@@ -374,7 +307,6 @@ namespace Finance
             this.metroTabControl.ResumeLayout(false);
             this.metroTabPage1.ResumeLayout(false);
             this.metroTabPage2.ResumeLayout(false);
-            this.metroTabPage2.PerformLayout();
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);
@@ -436,22 +368,14 @@ namespace Finance
             switch(tabCtrl.SelectedIndex)
             {
                 case 0:
-                    // list of categories tab 
+                    // current tab 
                     break; 
 
                 case 1:
                     // statistics tab
-
-                    // set default item on combobox
-                    cmbChartType.SelectedIndex = 0;
-
-                    // update data
-                    chartModel.refreshData();
-
-                    // update chart            
-                    DateTime startDate = DateTime.Now.AddMonths(-6);
-                    DateTime stopDate = DateTime.Now.AddMonths(24);
-                    chartController.updateView(startDate, stopDate);
+                    ChartModel chartModel = new ChartModel();
+                    chartController = new ChartController(this.chart, chartModel);
+                    chartController.updateView();
                     break;
  
             }
@@ -460,38 +384,6 @@ namespace Finance
         private void checkbox_CheckedChanged(object sender, EventArgs e)
         {
             chartController.setVisibleCharts(new bool[] { chkFull.Checked, chkIncomes.Checked, chkExpenses.Checked, chkSavings.Checked });
-        }
-
-        private void cmbChartType_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            MetroComboBox cmb = (MetroComboBox)sender;
-            switch (cmb.SelectedIndex)
-            {
-                case 0:
-                    chartController.setChartType(System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Column);
-                    break;
-                case 1:
-                    chartController.setChartType(System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Doughnut);
-                    break;
-                case 2:
-                    chartController.setChartType(System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line);
-                    break;
-                case 3:
-                    chartController.setChartType(System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie);
-                    break;
-            }
-        }
-
-        private void dtLeft_ValueChanged(object sender, EventArgs e)
-        {
-            MetroDateTime dt = (MetroDateTime)sender;
-            chartController.updateViewLeft(dt.Value);
-        }
-
-        private void dtRight_ValueChanged(object sender, EventArgs e)
-        {
-            MetroDateTime dt = (MetroDateTime)sender;
-            chartController.updateViewRight(dt.Value);
         }
  
     }

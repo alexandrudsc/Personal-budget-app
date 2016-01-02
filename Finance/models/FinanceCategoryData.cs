@@ -26,7 +26,7 @@ namespace Finance.models
             // if this financial category repeats 
             public bool isRecurrent;
             // if the category is recurrent, this is 
-            public int repeatWeek;
+            public int repeatMonths;
 
             // the start date of this category ( if is recurrent)
             // if not recurrent, this will be the date on which the financial event happened
@@ -44,7 +44,7 @@ namespace Finance.models
                             !d1.desc.Equals(d2.desc) ||
                             !d1.start.Equals(d2.start) ||
                              d1.value != d2.value ||
-                             d1.repeatWeek != d2.repeatWeek);
+                             d1.repeatMonths != d2.repeatMonths);
             }
 
             public static bool operator ==(Data d1, Data d2)
@@ -53,7 +53,7 @@ namespace Finance.models
                              d1.desc.Equals(d2.desc) &&
                              d1.start.Equals(d2.start) &&
                              d1.value == d2.value &&
-                             d1.repeatWeek == d2.repeatWeek);
+                             d1.repeatMonths == d2.repeatMonths);
             }
 
 

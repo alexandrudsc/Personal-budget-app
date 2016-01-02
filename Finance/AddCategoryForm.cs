@@ -51,7 +51,7 @@ namespace Finance
 
             // if this is recurrent. show extra info: the frequency;
             this.chkRecurrent.Checked = data.isRecurrent;
-            this.txtWeeks.Text = data.repeatWeek + "";
+            this.txtWeeks.Text = data.repeatMonths + "";
 
             // disable done button. There is no input
             this.btnDone.Visible = false;
@@ -236,9 +236,9 @@ namespace Finance
             this.lblPeriod.FontSize = MetroFramework.MetroLabelSize.Tall;
             this.lblPeriod.Location = new System.Drawing.Point(378, 162);
             this.lblPeriod.Name = "lblPeriod";
-            this.lblPeriod.Size = new System.Drawing.Size(60, 25);
+            this.lblPeriod.Size = new System.Drawing.Size(64, 25);
             this.lblPeriod.TabIndex = 11;
-            this.lblPeriod.Text = "Period";
+            this.lblPeriod.Text = "Repeat";
             this.lblPeriod.Theme = MetroFramework.MetroThemeStyle.Dark;
             this.lblPeriod.Visible = false;
             // 
@@ -268,9 +268,9 @@ namespace Finance
             this.lblWeeks.FontSize = MetroFramework.MetroLabelSize.Tall;
             this.lblWeeks.Location = new System.Drawing.Point(620, 162);
             this.lblWeeks.Name = "lblWeeks";
-            this.lblWeeks.Size = new System.Drawing.Size(57, 25);
+            this.lblWeeks.Size = new System.Drawing.Size(69, 25);
             this.lblWeeks.TabIndex = 14;
-            this.lblWeeks.Text = "weeks";
+            this.lblWeeks.Text = "months";
             this.lblWeeks.Theme = MetroFramework.MetroThemeStyle.Dark;
             this.lblWeeks.Visible = false;
             // 
@@ -349,19 +349,20 @@ namespace Finance
             }
             catch (FormatException ex)
             {
+                Console.WriteLine(ex.ToString());
                 data.value = 0;
-                data.repeatWeek = 0;
+                data.repeatMonths = 0;
             }
 
             if (data.isRecurrent)
             {
                 try
                 {
-                    data.repeatWeek = int.Parse(txtWeeks.Text);
+                    data.repeatMonths = int.Parse(txtWeeks.Text);
                 }
                 catch
                 {
-                    data.repeatWeek = 0;
+                    data.repeatMonths = 0;
                 }
             }
 
@@ -386,7 +387,7 @@ namespace Finance
             }
             catch (IndexOutOfRangeException ex)
             {
-
+                Console.WriteLine(ex.ToString());
             }
             txtValue.TextChanged += metroTextBox1_TextChanged;
         }

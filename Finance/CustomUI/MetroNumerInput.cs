@@ -39,7 +39,7 @@ namespace Finance.CustomUI
             }
             catch (IndexOutOfRangeException ex)
             {
-
+                Console.WriteLine(ex.ToString());
             }
             this.TextChanged += event_TextChanged;
         }
