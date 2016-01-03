@@ -78,6 +78,7 @@
     <Compile Include="controllers\ChartController.cs" />
     <Compile Include="controllers\FinanceCategoryController.cs" />
     <Compile Include="controllers\GridListAdapter.cs" />
+    <Compile Include="controllers\ListItemListener.cs" />
     <Compile Include="CustomUI\FloatingMetroLabel.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -144,7 +145,11 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="ic_action_edit.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

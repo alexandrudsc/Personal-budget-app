@@ -31,6 +31,7 @@ namespace Finance
         // the model that will be created with the data
         private FinanceCategoryData.Data data;
 
+        // default constructor
         public AddCategoryForm()
         {
             InitializeComponent();
@@ -44,17 +45,19 @@ namespace Finance
             foreach (System.Windows.Forms.Control ctrl in this.Controls)
                 ctrl.Enabled = false;
 
-            this.txtName.Text = data.name;
-            this.txtDesc.Text = data.desc;
-            this.txtValue.Text = data.value + "";
-            this.startDate.Value = data.start;
-
-            // if this is recurrent. show extra info: the frequency;
-            this.chkRecurrent.Checked = data.isRecurrent;
-            this.txtWeeks.Text = data.repeatMonths + "";
+            prefillData(data);
 
             // disable done button. There is no input
             this.btnDone.Visible = false;
+        }
+
+        // constructor used when this form is showed for editing
+        public AddCategoryForm(FinanceCategoryData.Data data, bool enabled)
+        {
+            InitializeComponent();
+
+            prefillData(data);
+
         }
 
         public AddCategoryForm(int category)
@@ -416,6 +419,18 @@ namespace Finance
         public FinanceCategoryData.Data getData()
         {
             return this.data;
+        }
+
+        private void prefillData(FinanceCategoryData.Data data)
+        {
+            this.txtName.Text = data.name;
+            this.txtDesc.Text = data.desc;
+            this.txtValue.Text = data.value + "";
+            this.startDate.Value = data.start;
+
+            // if this is recurrent. show extra info: the frequency;
+            this.chkRecurrent.Checked = data.isRecurrent;
+            this.txtWeeks.Text = data.repeatMonths + "";
         }
 
     }

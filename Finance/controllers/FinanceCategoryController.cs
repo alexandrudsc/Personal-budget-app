@@ -18,6 +18,7 @@ namespace Finance.controllers
         // event for  delete button is pressed on a FinanceCategory
         public delegate void Delete(FinanceCategory view, FinanceCategoryData.Data model);
         public event Delete ItemDeleted;
+        public event Delete ItemEdit;
 
         private FinanceCategoryData.Data model;
         private FinanceCategory view;
@@ -32,6 +33,9 @@ namespace Finance.controllers
 
             // add click listener for delete button on the tile
             this.view.Controls[0].Controls["btnDelete"].Click += btnDelete_Click;
+
+            // add click listener for edit button on the tile
+            this.view.Controls[0].Controls["btnEdit"].Click += btnEdit_Click;
         }
 
         public void setModel(FinanceCategoryData.Data model)
@@ -68,7 +72,28 @@ namespace Finance.controllers
         // raise event for deleting a event
         void btnDelete_Click(object sender, EventArgs e)
         {
-            ItemDeleted(this.view, this.model);
+            // try-catch block in case no handler is registered
+            try
+            {
+                ItemDeleted(this.view, this.model);
+            }
+            catch (NullReferenceException ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+        }
+
+        void btnEdit_Click(object sender, EventArgs e)
+        {
+            // try-catch block in case no handler is registered
+            try
+            {
+                ItemEdit(this.view, this.model);
+            }
+            catch (NullReferenceException ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
         }
 
     }

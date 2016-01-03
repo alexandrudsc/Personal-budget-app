@@ -114,7 +114,7 @@ namespace Finance
             this.metroTabControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.metroTabControl.Location = new System.Drawing.Point(20, 60);
             this.metroTabControl.Name = "metroTabControl";
-            this.metroTabControl.SelectedIndex = 1;
+            this.metroTabControl.SelectedIndex = 0;
             this.metroTabControl.Size = new System.Drawing.Size(753, 401);
             this.metroTabControl.TabIndex = 1;
             this.metroTabControl.Theme = MetroFramework.MetroThemeStyle.Dark;
@@ -133,10 +133,10 @@ namespace Finance
             this.metroTabPage1.HorizontalScrollbarBarColor = true;
             this.metroTabPage1.HorizontalScrollbarHighlightOnWheel = false;
             this.metroTabPage1.HorizontalScrollbarSize = 10;
-            this.metroTabPage1.Location = new System.Drawing.Point(4, 35);
+            this.metroTabPage1.Location = new System.Drawing.Point(4, 38);
             this.metroTabPage1.Name = "metroTabPage1";
             this.metroTabPage1.Padding = new System.Windows.Forms.Padding(25);
-            this.metroTabPage1.Size = new System.Drawing.Size(745, 362);
+            this.metroTabPage1.Size = new System.Drawing.Size(745, 359);
             this.metroTabPage1.TabIndex = 0;
             this.metroTabPage1.Text = "Categories && details";
             this.metroTabPage1.Theme = MetroFramework.MetroThemeStyle.Dark;
@@ -154,7 +154,7 @@ namespace Finance
             this.panelCategories.BackColor = System.Drawing.SystemColors.WindowFrame;
             this.panelCategories.Location = new System.Drawing.Point(175, 28);
             this.panelCategories.Name = "panelCategories";
-            this.panelCategories.Size = new System.Drawing.Size(570, 252);
+            this.panelCategories.Size = new System.Drawing.Size(570, 249);
             this.panelCategories.TabIndex = 29;
             // 
             // metroButtonAdd
@@ -162,7 +162,7 @@ namespace Finance
             this.metroButtonAdd.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.metroButtonAdd.FontSize = MetroFramework.MetroButtonSize.Tall;
-            this.metroButtonAdd.Location = new System.Drawing.Point(175, 296);
+            this.metroButtonAdd.Location = new System.Drawing.Point(175, 293);
             this.metroButtonAdd.Name = "metroButtonAdd";
             this.metroButtonAdd.Size = new System.Drawing.Size(567, 32);
             this.metroButtonAdd.TabIndex = 0;
@@ -272,7 +272,7 @@ namespace Finance
             "Doghnut",
             "Lines",
             "Pie"});
-            this.cmbChartType.Location = new System.Drawing.Point(639, 183);
+            this.cmbChartType.Location = new System.Drawing.Point(639, 181);
             this.cmbChartType.Name = "cmbChartType";
             this.cmbChartType.Size = new System.Drawing.Size(100, 29);
             this.cmbChartType.Sorted = true;
@@ -292,7 +292,7 @@ namespace Finance
             this.flowLayoutPanel1.Controls.Add(this.chkSavings);
             this.flowLayoutPanel1.Location = new System.Drawing.Point(636, 25);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(106, 121);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(106, 118);
             this.flowLayoutPanel1.TabIndex = 6;
             // 
             // chkFull

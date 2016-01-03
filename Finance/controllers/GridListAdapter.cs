@@ -13,7 +13,7 @@ namespace Finance.controllers
     /// <summary>
     /// Controller class for displaying a list of categories
     /// </summary>
-    class GridListAdapter
+    class GridListAdapter : ListItemListener
     {
 
         // a panel displaying a grid list of categories (list of views)
@@ -51,25 +51,53 @@ namespace Finance.controllers
                 // create the view
                 view = new FinanceCategory();
 
+                // create controller for this category
                 controller = new FinanceCategoryController(model, view);
-
                 controller.updateView();
+                // register listener for each item
                 controller.ItemDeleted += deleteItem;
+                controller.ItemEdit += editItem;
 
                 this.panelList.Controls.Add(view);
             }
 
         }
 
-
+        // handler for ItemDelete event;
         public void deleteItem(FinanceCategory view, FinanceCategoryData.Data model) 
         {
             string filename = majorCategory + ".dat";
+            // delete current file
             Utils.deleteFile(filename);
+            // save all items to new file, except the deleted item
             foreach (FinanceCategoryData.Data m in list)
                 if (m != model)
                     Utils.save<FinanceCategoryData.Data>(m, filename);
 
+            // refresh the list
+            refreshList(majorCategory);
+        }
+
+        // handler for ItemEdit event
+        public void editItem(FinanceCategory view, FinanceCategoryData.Data model)
+        {
+            string filename = majorCategory + ".dat";
+            FinanceCategoryData.Data nModel = model;
+            AddCategoryForm f = new AddCategoryForm(nModel, true);
+            
+            // if the user sended the input ...
+            if (DialogResult.OK == f.ShowDialog())
+            {
+                nModel = f.getData();
+                //... delete the old file of items 
+                Utils.deleteFile(filename);
+                //... save all items to new file, and instead of the selected item write the new item
+                foreach (FinanceCategoryData.Data m in list)
+                    if (m != model)
+                        Utils.save<FinanceCategoryData.Data>(m, filename);
+                    else
+                        Utils.save<FinanceCategoryData.Data>(nModel, filename);
+            }
             refreshList(majorCategory);
         }
     }

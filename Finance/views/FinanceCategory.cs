@@ -29,6 +29,8 @@ namespace Finance.views
 
         private MetroButton btnDelete;
 
+        private MetroButton btnEdit;
+
         public FinanceCategory()
         {
             this.Text = "";
@@ -68,11 +70,26 @@ namespace Finance.views
             btnDelete.Location = new System.Drawing.Point(this.Width - 30, 0);
             btnDelete.BringToFront();
 
+            // create edit button
+            btnEdit = new MetroButton();
+            btnEdit.Name = "btnEdit";
+            btnEdit.Width = 20;
+            btnEdit.Height = 20;
+            btnEdit.Text = "E";
+            //btnEdit.Image = System.Drawing.Image.FromFile("ic_action_edit.png");
+            btnEdit.Theme = MetroFramework.MetroThemeStyle.Dark;
+            btnEdit.Tag = this;
+            btnEdit.Padding = new System.Windows.Forms.Padding(0);
+            btnEdit.Margin = new System.Windows.Forms.Padding(0);
+            btnEdit.Location = new System.Drawing.Point(this.Width - 60, 0);
+            btnEdit.BringToFront();
+
             // add tile to groupbox;
             this.Controls.Add(tile);
 
             // add delete button to the tile
             this.Controls[0].Controls.Add(btnDelete);
+            this.Controls[0].Controls.Add(btnEdit);
 
             // add description to the tile;
             this.Controls[0].Controls.Add(lblDescr);

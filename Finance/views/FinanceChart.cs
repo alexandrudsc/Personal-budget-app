@@ -104,8 +104,11 @@ namespace Finance.views
         // handle mouse wheel event for zooming: zoom out - return to default;
         private void chart_MouseWheel(object sender, MouseEventArgs e)
         {
-            int i;
-            System.Drawing.Point posChart = this.PointToClient(e.Location);//Position of the mouse with respect to the chart
+
+            int i = 0;
+            //TODO: enable zoom for all areas simulanously
+
+            /*System.Drawing.Point posChart = this.PointToClient(e.Location);//Position of the mouse with respect to the chart
             for (i = 0; i < this.ChartAreas.Count; i++)
             {
                 int minX1, minY1, maxX1, maxY1;
@@ -118,9 +121,20 @@ namespace Finance.views
                     break;
             }
 
-            if (i > this.ChartAreas.Count)
+            
+            */
+
+            // zoom the first visible area
+            for (i = 0; i < this.ChartAreas.Count; i++)
+            {
+                if (this.ChartAreas[i].Visible)
+                    break;
+            }
+
+            if (i == this.ChartAreas.Count)
                 // the mouse was outside chart, so change zoom on the default area [0]
                 i = 0;
+
 
             try
             {

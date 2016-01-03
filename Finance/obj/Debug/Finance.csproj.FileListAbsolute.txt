@@ -7,3 +7,5 @@ E:\Work\Sandi\College projects\PIU anul III\Finance\Finance\obj\Debug\Finance.vi
 E:\Work\Sandi\College projects\PIU anul III\Finance\Finance\obj\Debug\Finance.csproj.GenerateResource.Cache
 E:\Work\Sandi\College projects\PIU anul III\Finance\Finance\obj\Debug\Finance.exe
 E:\Work\Sandi\College projects\PIU anul III\Finance\Finance\obj\Debug\Finance.pdb
+E:\Work\Sandi\College projects\PIU anul III\Finance\Finance\bin\Debug\ic_action_edit.png
+E:\Work\Sandi\College projects\PIU anul III\Finance\Finance\obj\Debug\Finance.csprojResolveAssemblyReference.cache
